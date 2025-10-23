@@ -1,0 +1,135 @@
+---
+import type { ServiceItem } from "./types";
+
+interface Props {
+  services: ServiceItem[];
+}
+
+const { services } = Astro.props as Props;
+---
+
+<section id="services" class="services">
+  <div class="servicesContainer">
+    <h2 class="servicesTitle">Our Services</h2>
+    <div class="servicesGrid">
+      {
+        services.map(service => {
+          const Icon = service.icon;
+          return (
+            <div class="serviceCard">
+              <div class="serviceCardIcon">
+                <Icon size={40} className="serviceIcon" />
+              </div>
+              <div class="serviceCardContent">
+                <h3 class="serviceTitle">{service.title}</h3>
+                <p class="serviceDescription">{service.description}</p>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Services section */
+  .services {
+    background: var(--background-primary);
+    padding: var(--spacing-4xl) 5%;
+  }
+
+  .servicesContainer {
+    margin: 0 auto;
+    max-width: var(--container-xl);
+  }
+
+  .servicesTitle {
+    color: var(--text-primary);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-2xl);
+    text-align: center;
+  }
+
+  .servicesGrid {
+    display: grid;
+    gap: var(--spacing-xl);
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .serviceCard {
+    display: flex;
+    background: transparent;
+    border: 2px solid var(--energy-primary);
+    border-radius: var(--radius-none);
+    transition: var(--transition-slow);
+    overflow: hidden;
+  }
+
+  .serviceCard:hover {
+    background: var(--energy-primary);
+    box-shadow: 0 0 20px var(--energy-glow);
+    transform: translateY(-2px);
+  }
+
+  .serviceCardIcon {
+    background: var(--energy-primary);
+    width: 30%;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    transition: var(--transition-slow);
+  }
+
+  .serviceCard:hover .serviceCardIcon {
+    background: var(--background-primary);
+  }
+
+  .serviceIcon {
+    color: var(--background-primary);
+    filter: drop-shadow(0 0 8px var(--energy-glow));
+    transition: var(--transition-slow);
+  }
+
+  .serviceCard:hover .serviceIcon {
+    color: var(--energy-primary);
+  }
+
+  .serviceCardContent {
+    flex: 1;
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .serviceTitle {
+    color: var(--text-primary);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .serviceCard:hover .serviceTitle {
+    color: var(--background-primary);
+  }
+
+  .serviceDescription {
+    color: var(--text-secondary);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .serviceCard:hover .serviceDescription {
+    color: var(--background-primary);
+  }
+
+  @media (max-width: 768px) {
+    .servicesGrid {
+      gap: var(--spacing-lg);
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

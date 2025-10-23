@@ -1,0 +1,69 @@
+---
+import { ArrowRight } from "lucide-astro";
+---
+
+<section id="contact" class="contact">
+  <div class="contactContainer">
+    <h2 class="contactTitle">Ready to Transform Your Website?</h2>
+    <p class="contactDescription">
+      Let's discuss how a modern headless architecture can improve your
+      performance, SEO, and bottom line.
+    </p>
+    <button class="contactButton">
+      Get Started Today <ArrowRight size={20} />
+    </button>
+  </div>
+</section>
+
+<style>
+  /* Contact section */
+  .contact {
+    background: linear-gradient(
+      135deg,
+      var(--background-secondary) 0%,
+      var(--background-tertiary) 100%
+    );
+    color: var(--text-primary);
+    padding: var(--spacing-4xl) 5%;
+    text-align: center;
+  }
+
+  .contactContainer {
+    margin: 0 auto;
+    max-width: var(--container-md);
+  }
+
+  .contactTitle {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .contactDescription {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-2xl);
+    opacity: 0.95;
+  }
+
+  .contactButton {
+    align-items: center;
+    background: var(--energy-primary);
+    border: none;
+    border-radius: var(--radius-none);
+    box-shadow: 0 0 25px var(--energy-glow);
+    color: var(--background-primary);
+    cursor: pointer;
+    display: inline-flex;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    gap: var(--spacing-sm);
+    padding: var(--spacing-lg) var(--spacing-2xl);
+    transition: var(--transition-normal);
+  }
+
+  .contactButton:hover {
+    background: var(--energy-hover);
+    box-shadow: 0 0 35px var(--energy-glow);
+    transform: translateY(-2px);
+  }
+</style>

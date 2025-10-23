@@ -1,0 +1,82 @@
+---
+import { Zap } from "lucide-astro";
+---
+
+<footer class="footer">
+  <div class="footerContainer">
+    <div class="footerLogo">
+      <Zap size={24} />
+      Velocity Digital
+    </div>
+    <p class="footerDescription">Modern headless WordPress solutions</p>
+    <div class="footerLinks">
+      <a href="#" class="footerLink"> Services </a>
+      <a href="#" class="footerLink"> Work </a>
+      <a href="#" class="footerLink"> About </a>
+      <a href="#" class="footerLink"> Contact </a>
+      <a href="#" class="footerLink"> Privacy </a>
+    </div>
+    <p class="footerCopyright">
+      © 2025 Velocity Digital. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<style>
+  /* Footer */
+  .footer {
+    background: var(--background-secondary);
+    border-top: 1px solid var(--border-primary);
+    color: var(--text-primary);
+    padding: var(--spacing-2xl) 5%;
+    text-align: center;
+  }
+
+  .footerContainer {
+    margin: 0 auto;
+    max-width: var(--container-xl);
+  }
+
+  .footerLogo {
+    align-items: center;
+    display: flex;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    gap: var(--spacing-sm);
+    justify-content: center;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .footerDescription {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xl);
+    opacity: 0.7;
+  }
+
+  .footerLinks {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: var(--font-size-sm);
+    gap: var(--spacing-xl);
+    justify-content: center;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .footerLink {
+    color: var(--text-primary);
+    opacity: 0.8;
+    text-decoration: none;
+    transition: var(--transition-normal);
+  }
+
+  .footerLink:hover {
+    color: var(--accent-primary);
+    opacity: 1;
+  }
+
+  .footerCopyright {
+    color: var(--text-tertiary);
+    font-size: var(--font-size-sm);
+    opacity: 0.6;
+  }
+</style>

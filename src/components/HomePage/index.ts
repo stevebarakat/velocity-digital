@@ -1,0 +1,10 @@
+export { Contact } from "./Contact";
+export { getServices, getTestimonials } from "./data";
+export { Features } from "./Features";
+export { Footer } from "./Footer";
+export { Header } from "./Header";
+export { Hero } from "./Hero";
+export { Services } from "./Services";
+export { Testimonials } from "./Testimonials";
+export type { ServiceItem, TestimonialItem } from "./types";
+export { Work } from "./Work";

@@ -1,0 +1,147 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description }: Props = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style>
+  :root {
+    /* Dark Theme Colors */
+    --background-primary: hsl(0deg 0% 0%);
+    --background-secondary: hsl(0deg 0% 10%);
+    --background-tertiary: hsl(0deg 0% 20%);
+    --background-card: hsl(0deg 0% 12%);
+    --background-hover: hsl(0deg 0% 16%);
+    --text-primary: hsl(0deg 0% 100%);
+    --text-secondary: hsl(0deg 0% 80%);
+    --text-tertiary: hsl(0deg 0% 60%);
+    --text-muted: hsl(0deg 0% 40%);
+    --accent-primary: hsl(0deg 0% 100%);
+    --accent-secondary: hsl(0deg 0% 88%);
+    --accent-hover: hsl(0deg 0% 94%);
+
+    /* Energy-inspired accent colors */
+    --energy-primary: hsl(45deg 100% 60%); /* Bright yellow-orange */
+    --energy-secondary: hsl(45deg 100% 70%); /* Lighter yellow-orange */
+    --energy-hover: hsl(45deg 100% 50%); /* Darker yellow-orange */
+    --energy-glow: hsl(45deg 100% 60% / 30%); /* Glowing effect */
+    --border-primary: hsl(0deg 0% 20%);
+    --border-secondary: hsl(0deg 0% 27%);
+    --border-hover: hsl(0deg 0% 33%);
+
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+    --spacing-4xl: 6rem;
+    --spacing-5xl: 8rem;
+
+    /* Typography */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    --font-size-5xl: 3rem;
+    --font-size-6xl: 3.75rem;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    --line-height-tight: 1.1;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.6;
+    --line-height-loose: 1.7;
+
+    /* Border Radius - All corners removed for angular look */
+    --radius-none: 0px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(0deg 0% 0% / 30%);
+    --shadow-md: 0 4px 6px -1px hsl(0deg 0% 0% / 40%);
+    --shadow-lg: 0 10px 15px -3px hsl(0deg 0% 0% / 50%);
+    --shadow-xl: 0 20px 25px -5px hsl(0deg 0% 0% / 60%);
+    --shadow-2xl: 0 25px 50px -12px hsl(0deg 0% 0% / 70%);
+
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.2s ease;
+    --transition-slow: 0.3s ease;
+
+    /* Container Widths */
+    --container-sm: 640px;
+    --container-md: 768px;
+    --container-lg: 1024px;
+    --container-xl: 1280px;
+    --container-2xl: 1400px;
+
+    /* Font Variables */
+    --font-geist-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, sans-serif;
+    --font-geist-mono: "Geist Mono", "SF Mono", Monaco, "Cascadia Code",
+      "Roboto Mono", Consolas, "Courier New", monospace;
+  }
+
+  html,
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  body {
+    background: var(--background-primary);
+    color: var(--text-primary);
+    font-family: var(--font-geist-sans);
+    font-size: var(--font-size-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: var(--line-height-relaxed);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+</style>

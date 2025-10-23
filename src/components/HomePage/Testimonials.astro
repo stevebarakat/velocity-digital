@@ -1,0 +1,81 @@
+---
+import type { TestimonialItem } from "./types";
+
+const { testimonials }: { testimonials: TestimonialItem[] } = Astro.props;
+---
+
+<section class="testimonials">
+  <div class="testimonialsContainer">
+    <h2 class="testimonialsTitle">What Clients Say</h2>
+    <div class="testimonialsGrid">
+      {
+        testimonials.map((testimonial, i) => (
+          <div key={i} class="testimonialCard">
+            <p class="testimonialQuote">"{testimonial.quote}"</p>
+            <div>
+              <div class="testimonialAuthor">{testimonial.author}</div>
+              <div class="testimonialRole">
+                {testimonial.role}, {testimonial.company}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Testimonials section */
+  .testimonials {
+    background: var(--background-primary);
+    padding: var(--spacing-4xl) 5%;
+  }
+
+  .testimonialsContainer {
+    margin: 0 auto;
+    max-width: var(--container-lg);
+  }
+
+  .testimonialsTitle {
+    color: var(--text-primary);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-3xl);
+    text-align: center;
+  }
+
+  .testimonialsGrid {
+    display: grid;
+    gap: var(--spacing-2xl);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .testimonialCard {
+    background: var(--background-card);
+    border: 1px solid var(--border-primary);
+    border-left: 4px solid var(--energy-primary);
+    border-radius: var(--radius-none);
+    box-shadow: 0 0 20px var(--energy-glow);
+    padding: var(--spacing-2xl);
+  }
+
+  .testimonialQuote {
+    color: var(--text-secondary);
+    font-size: var(--font-size-lg);
+    font-style: italic;
+    line-height: var(--line-height-loose);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .testimonialAuthor {
+    color: var(--text-primary);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .testimonialRole {
+    color: var(--text-tertiary);
+    font-size: var(--font-size-sm);
+  }
+</style>

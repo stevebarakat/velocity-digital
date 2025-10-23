@@ -1,0 +1,137 @@
+---
+import { Award, TrendingUp, Users, Zap } from "lucide-astro";
+
+type FeatureItem = {
+  icon: typeof Zap;
+  title: string;
+  desc: string;
+};
+
+const features: FeatureItem[] = [
+  {
+    icon: Zap,
+    title: "3x Faster",
+    desc: "Average load time improvement vs traditional WordPress",
+  },
+  {
+    icon: TrendingUp,
+    title: "50% Better SEO",
+    desc: "Server-side rendering for maximum search visibility",
+  },
+  {
+    icon: Award,
+    title: "95+ Lighthouse",
+    desc: "Perfect scores across performance metrics",
+  },
+  {
+    icon: Users,
+    title: "Easy Content",
+    desc: "Keep WordPress CMS your team already knows",
+  },
+];
+---
+
+<section class="features">
+  <div class="featuresContainer">
+    <h2 class="featuresTitle">Why Choose Velocity</h2>
+    <p class="featuresSubtitle">Modern architecture meets proven results</p>
+    <div class="featuresGrid">
+      {
+        features.map((item, i) => (
+          <div key={i} class="featureCard">
+            <item.icon size={40} class="featureIcon" />
+            <h3 class="featureTitle">{item.title}</h3>
+            <p class="featureDescription">{item.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Features section */
+  .features {
+    background: linear-gradient(
+      135deg,
+      var(--energy-primary) 0%,
+      var(--energy-secondary) 100%
+    );
+    color: var(--background-primary);
+    padding: var(--spacing-4xl) 5%;
+  }
+
+  .featuresContainer {
+    margin: 0 auto;
+    max-width: var(--container-xl);
+    text-align: center;
+  }
+
+  .featuresTitle {
+    color: var(--background-primary);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .featuresSubtitle {
+    color: var(--background-primary);
+    font-size: var(--font-size-xl);
+    margin: 0 auto var(--spacing-3xl);
+    margin-bottom: var(--spacing-3xl);
+    max-width: 600px;
+    opacity: 0.9;
+  }
+
+  .featuresGrid {
+    display: grid;
+    gap: var(--spacing-xl);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .featureCard {
+    background: linear-gradient(
+      135deg,
+      var(--background-primary) 0%,
+      var(--background-tertiary) 100%
+    );
+    border: 1px solid var(--background-primary);
+    box-shadow: 0 4px 20px hsl(0deg 0% 0% / 20%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-2xl) var(--spacing-xl);
+    transition: var(--transition-slow);
+  }
+
+  .featureCard:hover {
+    box-shadow: 0 8px 30px hsl(0deg 0% 0% / 30%);
+    transform: translateY(-5px);
+  }
+
+  .featureIcon {
+    color: var(--background-primary);
+    filter: drop-shadow(0 0 8px var(--energy-glow));
+    margin-bottom: var(--spacing-md);
+    background-color: var(--energy-primary);
+    border-radius: 50%;
+    padding: var(--spacing-md);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .featureTitle {
+    color: var(--text-primary);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .featureDescription {
+    color: var(--text-secondary);
+  }
+</style>

@@ -1,0 +1,170 @@
+---
+import { ArrowRight } from "lucide-astro";
+import type { CaseStudyNode } from "../../types/case-studies";
+
+interface Props {
+  caseStudies: CaseStudyNode[];
+}
+
+const { caseStudies } = Astro.props as Props;
+---
+
+<section id="work" class="work">
+  <div class="workContainer">
+    <h2 class="workTitle">Recent Work</h2>
+    <p class="workSubtitle">Real results for real businesses</p>
+    <div class="workGrid">
+      {
+        caseStudies.map((study, i) => (
+          <div key={i} class="workCard">
+            <div
+              class="workImage"
+              style={{
+                backgroundImage: `url(${study.featuredImage?.node?.sourceUrl})`,
+              }}
+            >
+              <div class="workBadge">{study.caseStudyFields.clientName}</div>
+            </div>
+            <div class="workContent">
+              <h3 class="workCardTitle">{study.title}</h3>
+              <div class="workMetrics">
+                <div>
+                  <div class="workResult">
+                    {study.caseStudyFields.resultHeadline}
+                  </div>
+                  <div class="workMetric">
+                    {study.caseStudyFields.resultMetric}
+                  </div>
+                </div>
+              </div>
+              <a
+                href={`/case-studies/${
+                  study.slug ||
+                  study.title
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, "-")
+                    .replace(/^-+|-+$/g, "")
+                }`}
+                class="workLink"
+              >
+                View Case Study <ArrowRight size={16} />
+              </a>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Work section */
+  .work {
+    background: var(--background-secondary);
+    padding: var(--spacing-4xl) 5%;
+  }
+
+  .workContainer {
+    margin: 0 auto;
+    max-width: var(--container-xl);
+  }
+
+  .workTitle {
+    color: var(--text-primary);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+  }
+
+  .workSubtitle {
+    color: var(--text-secondary);
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-3xl);
+    text-align: center;
+  }
+
+  .workGrid {
+    display: grid;
+    gap: var(--spacing-2xl);
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+
+  .workCard {
+    background: var(--background-card);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-none);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: var(--transition-slow);
+  }
+
+  .workCard:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-8px);
+  }
+
+  .workImage {
+    background-position: center;
+    background-size: cover;
+    height: 220px;
+    position: relative;
+  }
+
+  .workBadge {
+    background: var(--energy-primary);
+    border-radius: var(--radius-none);
+    box-shadow: 0 0 15px var(--energy-glow);
+    color: var(--background-primary);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    padding: var(--spacing-sm) var(--spacing-md);
+    position: absolute;
+    right: var(--spacing-md);
+    top: var(--spacing-md);
+  }
+
+  .workContent {
+    padding: var(--spacing-xl);
+  }
+
+  .workCardTitle {
+    color: var(--text-primary);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .workMetrics {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .workResult {
+    color: var(--energy-primary);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-extrabold);
+    text-shadow: 0 0 10px var(--energy-glow);
+  }
+
+  .workMetric {
+    color: var(--text-tertiary);
+    font-size: var(--font-size-xs);
+  }
+
+  .workLink {
+    align-items: center;
+    color: var(--energy-primary);
+    display: inline-flex;
+    font-weight: var(--font-weight-semibold);
+    gap: var(--spacing-sm);
+    text-decoration: none;
+    transition: var(--transition-normal);
+  }
+
+  .workLink:hover {
+    color: var(--energy-secondary);
+    text-shadow: 0 0 8px var(--energy-glow);
+  }
+</style>

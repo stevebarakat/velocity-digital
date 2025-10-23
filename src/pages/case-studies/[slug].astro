@@ -1,0 +1,614 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Zap } from "lucide-astro";
+
+export async function getStaticPaths() {
+  return [
+    {
+      params: { slug: "velocity-digital" },
+      props: {
+        title: "Velocity Digital",
+        client: "Velocity Digital",
+        industry: "Digital Agency",
+        challenge: "We needed to create a new website for our client.",
+        solution: "We created a new website for our client.",
+        resultHeadline: "300% Increase",
+        resultMetric: "in conversion rate",
+        techStack: ["React", "Next.js", "Tailwind CSS", "TypeScript"],
+        testimonialQuote:
+          "The new website exceeded our expectations and significantly improved our sales.",
+        testimonialAuthor: "Sarah Johnson",
+        projectUrl: "https://example.com",
+      },
+    },
+    {
+      params: { slug: "case-study-1" },
+      props: {
+        title: "E-commerce Platform Redesign",
+        client: "RetailMax",
+        industry: "E-commerce",
+        challenge:
+          "The existing platform had poor user experience and low conversion rates.",
+        solution:
+          "We redesigned the entire user interface and implemented a modern, mobile-first approach.",
+        resultHeadline: "250% Increase",
+        resultMetric: "in mobile conversions",
+        techStack: ["Vue.js", "Nuxt.js", "Tailwind CSS", "Stripe"],
+        testimonialQuote:
+          "The redesign transformed our business. We saw immediate improvements in user engagement and sales.",
+        testimonialAuthor: "David Chen",
+        projectUrl: "https://retailmax-demo.com",
+      },
+    },
+  ];
+}
+
+const { slug } = Astro.params;
+const {
+  title,
+  client,
+  industry,
+  challenge,
+  solution,
+  resultHeadline,
+  resultMetric,
+  techStack,
+  testimonialQuote,
+  testimonialAuthor,
+  projectUrl,
+} = Astro.props;
+---
+
+<Layout title={`Case Study - ${title}`} description={`Case study: ${title}`}>
+  <div class="container">
+    <header class="siteHeader">
+      <nav class="nav">
+        <div class="logo">
+          <Zap size={28} />
+          <a href="/">Velocity Digital</a>
+        </div>
+        <div class="navLinks">
+          <a href="/#services" class="navLink"> Services </a>
+          <a href="/#work" class="navLink"> Work </a>
+          <a href="/#about" class="navLink"> About </a>
+          <a href="/#contact" class="navLink"> Contact </a>
+        </div>
+      </nav>
+    </header>
+
+    <header class="header">
+      <div class="headerContent">
+        <div class="breadcrumb">
+          <a href="/">Home</a>
+          <span> / </span>
+          <a href="/#work">Case Studies</a>
+          <span> / </span>
+          <span>Case Study</span>
+        </div>
+        <h1 class="title">{title}</h1>
+        <div class="meta">
+          <span class="client">{client}</span>
+          <span class="industry">{industry}</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="hero">
+        <div class="heroContent">
+          <div class="heroText">
+            <h2 class="challengeTitle">The Challenge</h2>
+            <p class="challenge">
+              {challenge}
+            </p>
+          </div>
+          <div class="heroImage">
+            <div
+              class="projectImage"
+              style={{
+                backgroundImage: `url(https://via.placeholder.com/400x300)`,
+              }}
+            >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="solution">
+        <div class="solutionContent">
+          <h2 class="sectionTitle">The Solution</h2>
+          <p class="solutionText">{solution}</p>
+        </div>
+      </section>
+
+      <section class="results">
+        <div class="resultsContent">
+          <h2 class="sectionTitle">Results</h2>
+          <div class="resultsGrid">
+            <div class="resultCard">
+              <h3 class="resultTitle">Impact</h3>
+              <p class="resultText">{resultHeadline}</p>
+            </div>
+            <div class="resultCard">
+              <h3 class="resultTitle">Metric</h3>
+              <p class="resultText">{resultMetric}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {
+        true && (
+          <section class="techStack">
+            <div class="techStackContent">
+              <h2 class="sectionTitle">Technology Stack</h2>
+              <div class="techGrid">
+                {techStack.map((tech) => (
+                  <div class="techItem">{tech}</div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )
+      }
+
+      {
+        true && (
+          <section class="testimonial">
+            <div class="testimonialContent">
+              <blockquote class="testimonialQuote">
+                "{testimonialQuote}"
+              </blockquote>
+              <cite class="testimonialAuthor">{testimonialAuthor}</cite>
+            </div>
+          </section>
+        )
+      }
+
+      {
+        true && (
+          <section class="projectLink">
+            <div class="projectLinkContent">
+              <h2 class="projectLinkTitle">View Live Project</h2>
+              <p class="projectLinkText">
+                See this project in action and explore the full implementation.
+              </p>
+              <a
+                href={projectUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="projectButton"
+              >
+                View Project
+              </a>
+            </div>
+          </section>
+        )
+      }
+
+      <section class="cta">
+        <div class="ctaContent">
+          <h2 class="ctaTitle">Ready to Start Your Project?</h2>
+          <p class="ctaText">
+            Let's discuss how we can help transform your business with modern
+            web solutions.
+          </p>
+          <a href="/#contact" class="ctaButton"> Get Started Today </a>
+        </div>
+      </section>
+    </main>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    background: var(--background-primary);
+    min-height: 100vh;
+  }
+
+  .siteHeader {
+    backdrop-filter: blur(10px);
+    background: rgb(0 0 0 / 95%);
+    border-bottom: 1px solid var(--border-primary);
+    left: 0;
+    padding: var(--spacing-md) 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .nav {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: var(--container-xl);
+    padding: 0 var(--spacing-xl);
+  }
+
+  .logo {
+    align-items: center;
+    color: var(--text-primary);
+    display: flex;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    gap: var(--spacing-sm);
+  }
+
+  .logo a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .navLinks {
+    display: flex;
+    gap: var(--spacing-xl);
+  }
+
+  .navLink {
+    color: var(--text-secondary);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    transition: var(--transition-normal);
+  }
+
+  .navLink:hover {
+    color: var(--energy-primary);
+    text-shadow: 0 0 8px var(--energy-glow);
+  }
+
+  .header {
+    background: linear-gradient(
+      135deg,
+      var(--background-secondary) 0%,
+      var(--background-tertiary) 100%
+    );
+    color: var(--text-primary);
+    margin-top: 80px;
+    overflow: hidden;
+    padding: var(--spacing-5xl) var(--spacing-xl) var(--spacing-4xl);
+    position: relative;
+  }
+
+  .header::before {
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    content: "";
+    inset: 0;
+    opacity: 0.3;
+    position: absolute;
+  }
+
+  .headerContent {
+    margin: 0 auto;
+    max-width: var(--container-xl);
+    position: relative;
+    z-index: 1;
+  }
+
+  .breadcrumb {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-md);
+    opacity: 0.9;
+  }
+
+  .breadcrumb a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: var(--transition-normal);
+  }
+
+  .breadcrumb a:hover {
+    opacity: 0.8;
+  }
+
+  .title {
+    font-size: var(--font-size-6xl);
+    font-weight: var(--font-weight-extrabold);
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .meta {
+    display: flex;
+    font-size: var(--font-size-lg);
+    gap: var(--spacing-xl);
+    opacity: 0.9;
+  }
+
+  .client {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .industry {
+    opacity: 0.8;
+  }
+
+  .main {
+    margin: 0 auto;
+    max-width: var(--container-xl);
+    padding: 0 var(--spacing-xl);
+  }
+
+  .hero {
+    padding: var(--spacing-4xl) 0;
+  }
+
+  .heroContent {
+    align-items: center;
+    display: grid;
+    gap: var(--spacing-3xl);
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .challengeTitle {
+    color: var(--text-primary);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .challenge {
+    color: var(--text-secondary);
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-loose);
+  }
+
+  .heroImage {
+    position: relative;
+  }
+
+  .projectImage {
+    background-position: center;
+    background-size: cover;
+    border-radius: var(--radius-none);
+    box-shadow: var(--shadow-2xl);
+    height: 400px;
+    width: 100%;
+  }
+
+  .solution,
+  .results,
+  .techStack,
+  .testimonial {
+    padding: var(--spacing-4xl) 0;
+  }
+
+  .solution {
+    background: var(--background-secondary);
+  }
+
+  .solutionContent,
+  .resultsContent,
+  .techStackContent,
+  .testimonialContent {
+    margin: 0 auto;
+    max-width: var(--container-lg);
+  }
+
+  .sectionTitle {
+    color: var(--text-primary);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+  }
+
+  .solutionText {
+    color: var(--text-secondary);
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-loose);
+  }
+
+  .resultsGrid {
+    display: grid;
+    gap: var(--spacing-xl);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    margin-top: var(--spacing-xl);
+  }
+
+  .resultCard {
+    background: var(--background-card);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-none);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-xl);
+    text-align: center;
+  }
+
+  .resultTitle {
+    color: var(--energy-primary);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .resultText {
+    color: var(--text-secondary);
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .techGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    justify-content: center;
+    margin-top: var(--spacing-xl);
+  }
+
+  .techItem {
+    background: var(--energy-primary);
+    border-radius: var(--radius-none);
+    box-shadow: 0 0 10px var(--energy-glow);
+    color: var(--background-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    padding: var(--spacing-sm) var(--spacing-lg);
+  }
+
+  .testimonial {
+    background: linear-gradient(
+      135deg,
+      var(--background-secondary) 0%,
+      var(--background-tertiary) 100%
+    );
+    color: var(--text-primary);
+  }
+
+  .testimonialQuote {
+    font-size: var(--font-size-2xl);
+    font-style: italic;
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+  }
+
+  .testimonialAuthor {
+    display: block;
+    font-size: var(--font-size-lg);
+    font-style: normal;
+    font-weight: var(--font-weight-semibold);
+    text-align: center;
+  }
+
+  .projectLink {
+    background: var(--background-secondary);
+    padding: var(--spacing-4xl) 0;
+    text-align: center;
+  }
+
+  .projectLinkContent {
+    margin: 0 auto;
+    max-width: var(--container-lg);
+  }
+
+  .projectLinkTitle {
+    color: var(--text-primary);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .projectLinkText {
+    color: var(--text-secondary);
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .projectButton {
+    background: var(--energy-primary);
+    border-radius: var(--radius-none);
+    box-shadow: 0 0 20px var(--energy-glow);
+    color: var(--background-primary);
+    display: inline-block;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    padding: var(--spacing-md) var(--spacing-xl);
+    text-decoration: none;
+    transition: var(--transition-normal);
+  }
+
+  .projectButton:hover {
+    background: var(--energy-hover);
+    box-shadow: 0 0 30px var(--energy-glow);
+  }
+
+  .cta {
+    background: var(--background-tertiary);
+    color: var(--text-primary);
+    padding: var(--spacing-4xl) 0;
+    text-align: center;
+  }
+
+  .ctaTitle {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .ctaText {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-xl);
+    opacity: 0.9;
+  }
+
+  .ctaButton {
+    background: var(--energy-primary);
+    border-radius: var(--radius-none);
+    box-shadow: 0 0 20px var(--energy-glow);
+    color: var(--background-primary);
+    display: inline-block;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    padding: var(--spacing-md) var(--spacing-xl);
+    text-decoration: none;
+    transition: var(--transition-normal);
+  }
+
+  .ctaButton:hover {
+    background: var(--energy-hover);
+    box-shadow: 0 0 30px var(--energy-glow);
+  }
+
+  @media (width <= 768px) {
+    .siteHeader {
+      padding: var(--spacing-sm) 0;
+    }
+
+    .nav {
+      padding: 0 var(--spacing-md);
+    }
+
+    .navLinks {
+      gap: var(--spacing-md);
+    }
+
+    .navLink {
+      font-size: var(--font-size-sm);
+    }
+
+    .header {
+      margin-top: 70px;
+      padding: var(--spacing-4xl) var(--spacing-md) var(--spacing-3xl);
+    }
+
+    .title {
+      font-size: var(--font-size-4xl);
+    }
+
+    .heroContent {
+      gap: var(--spacing-xl);
+      grid-template-columns: 1fr;
+    }
+
+    .challengeTitle,
+    .sectionTitle,
+    .ctaTitle {
+      font-size: var(--font-size-3xl);
+    }
+
+    .main {
+      padding: 0 var(--spacing-md);
+    }
+
+    .hero,
+    .solution,
+    .results,
+    .techStack,
+    .testimonial,
+    .projectLink,
+    .cta {
+      padding: var(--spacing-2xl) 0;
+    }
+
+    .resultsGrid {
+      grid-template-columns: 1fr;
+    }
+
+    .meta {
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+  }
+</style>

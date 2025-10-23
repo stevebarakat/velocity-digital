@@ -1,16 +1,55 @@
 ---
+import Contact from "../components/HomePage/Contact.astro";
+import { getServices, getTestimonials } from "../components/HomePage/data";
+import Features from "../components/HomePage/Features.astro";
+import Footer from "../components/HomePage/Footer.astro";
+import Header from "../components/HomePage/Header.astro";
+import Hero from "../components/HomePage/Hero.astro";
+import Services from "../components/HomePage/Services.astro";
+import Testimonials from "../components/HomePage/Testimonials.astro";
+import Work from "../components/HomePage/Work.astro";
+import Layout from "../layouts/Layout.astro";
 
+const caseStudies = [
+  {
+    title: "Case Study 1",
+    slug: "case-study-1",
+    featuredImage: {
+      node: {
+        sourceUrl: "https://via.placeholder.com/400x300",
+        altText: "Case Study 1",
+      },
+    },
+    caseStudyFields: {
+      clientName: "TechCorp",
+      resultHeadline: "300% Increase",
+      resultMetric: "in conversion rate",
+      projectUrl: "https://example.com",
+    },
+  },
+];
+
+const services = getServices();
+const testimonials = getTestimonials();
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout
+  title="Velocity Digital"
+  description="Velocity Digital is a digital agency that helps businesses grow online."
+>
+  <div class="root">
+    <Header />
+    <Hero />
+    <Features />
+    <Services services={services} />
+    <Work caseStudies={caseStudies} />
+    <Testimonials testimonials={testimonials} />
+    <Footer />
+  </div>
+</Layout>
+
+<style>
+  .root {
+    min-height: 100vh;
+  }
+</style>
