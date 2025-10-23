@@ -1,0 +1,21 @@
+# Jekyll configuration for GitHub Pages
+# This file tells Jekyll to exclude Astro files from processing
+
+# Exclude Astro files and directories
+exclude:
+  - src/
+  - astro.config.mjs
+  - package.json
+  - package-lock.json
+  - tsconfig.json
+  - node_modules/
+  - .git/
+  - .gitignore
+  - README.md
+
+# Include only the built files
+include:
+  - _site/
+
+# Disable Jekyll processing for Astro files
+plugins: []
